@@ -1,0 +1,32 @@
+.nav {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav a:hover {
+  color: #007bff;
+}

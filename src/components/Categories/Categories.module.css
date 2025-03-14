@@ -1,0 +1,142 @@
+/* Main container */
+.categoriesContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: beige;
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styling */
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Loading & Error messages */
+.loading,
+.error {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+}
+
+/* Category list */
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Category item */
+.categoryItem {
+  background-color: #fff;
+  padding: 0.8rem;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Hover effect */
+.categoryItem:hover {
+  background: #f5f5f5;
+}
+
+/* Link styles */
+.categoryLink {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  text-align: center;
+  flex-grow: 1;
+}
+
+/* Button group */
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+}
+
+/* Edit & Delete Buttons */
+.editButton,
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.editButton {
+  color: #f39c12;
+}
+
+.deleteButton {
+  color: #e74c3c;
+}
+
+/* Button hover effects */
+.editButton:hover {
+  color: #d68910;
+}
+
+.deleteButton:hover {
+  color: #c0392b;
+}
+
+/* New Category Button */
+.newCategoryButton {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px;
+  background: #08b302;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+}
+
+.newCategoryButton:hover {
+  background: #036410;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .categoriesContainer {
+    padding: 1rem;
+  }
+
+  .categoryItem {
+    max-width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .buttonGroup {
+    justify-content: center;
+  }
+}
