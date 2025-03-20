@@ -10,6 +10,7 @@ npm run dev
 yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result with the env file preferably
+```
 
 ## Verkefni 4 - Virkni
 Forsíða með hlekkir
@@ -18,7 +19,7 @@ Svara spurningar
 ESLint með engar villur
 
 ## Deploy on Vercel
-
+https://vef2-2025-v4.vercel.app/
 
 ## Aukatriði
 
