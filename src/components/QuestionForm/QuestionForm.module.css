@@ -1,0 +1,155 @@
+/* QuestionForm.module.css */
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input,
+.select,
+.answerInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus,
+.select:focus,
+.answerInput:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.inputError {
+  border-color: #e74c3c;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.answers {
+  margin-bottom: 20px;
+}
+
+.answerItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+}
+
+.addAnswerButton,
+.removeAnswerButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addAnswerButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.addAnswerButton:hover {
+  background-color: #45a049;
+}
+
+.removeAnswerButton {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.removeAnswerButton:hover:not(:disabled) {
+  background-color: #c0392b;
+}
+
+.removeAnswerButton:disabled {
+  background-color: #f0f0f0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submitButton,
+.cancelButton {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.submitButton:hover {
+  background-color: #45a049;
+}
+
+.cancelButton {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.cancelButton:hover {
+  background-color: #e0e0e0;
+}

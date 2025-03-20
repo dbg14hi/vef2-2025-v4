@@ -98,4 +98,17 @@ async getCategories(limit?: number, offset?: number): Promise<Paginated<Category
   
     return response;
   }
+
+  async createQuestion(
+    text: string,
+    categoryId: number,
+    answers: { text: string; correct: boolean }[]
+  ): Promise<Question | null> {
+    return this.fetchFromApi<Question>(`${BASE_URL}/questions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, categoryId, answers }),
+    });
+  }
+  
 }

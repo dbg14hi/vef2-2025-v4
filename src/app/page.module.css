@@ -23,3 +23,19 @@
   color: #333;
   margin-bottom: 1rem;
 }
+
+.linkText {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.linkText a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.linkText a:hover {
+  text-decoration: underline;
+}
