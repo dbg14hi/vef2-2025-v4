@@ -5,6 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:8000';
 export class QuestionsApi {
   async fetchFromApi<T>(url: string, options?: RequestInit): Promise<T | null> {
     let response: Response | undefined;
+
     try {
       response = await fetch(url, options);
     } catch (e) {
@@ -13,8 +14,25 @@ export class QuestionsApi {
     }
 
     if (!response.ok) {
-      console.error('non 2xx status from API', url);
+    // Handle specific HTTP status codes
+    switch (response.status) {
+      case 400:
+        console.error(`Bad request: ${url}`);
+        break;
+      case 404:
+        console.error(`Not found: ${url}`);
+        return null;
+      case 500:
+        console.error(`Server error at ${url}`);
+        break;
+      default:
+        console.error(`Unexpected response (${response.status}) from ${url}`);
+      }
       return null;
+    }
+
+    if (response.status === 204) {
+      return null; // No JSON to parse
     }
 
     let json: unknown;
@@ -28,15 +46,17 @@ export class QuestionsApi {
     return json as T;
   }
 
-  async getCategories(): Promise<Paginated<Category> | null> {
-    const url = BASE_URL + '/categories';
-
-    const response = await this.fetchFromApi<Paginated<Category>>(url);
-
-    // TODO hér gæti ég staðfest gerð gagna
-
-    return response;
+  
+  // api.ts
+async getCategories(limit?: number, offset?: number): Promise<Paginated<Category> | null> {
+  let url = BASE_URL + '/categories';
+  if (limit !== undefined && offset !== undefined) {
+      url += `?limit=${limit}&offset=${offset}`;
   }
+  
+  const response = await this.fetchFromApi<Paginated<Category>>(url);
+  return response;
+}
 
   async getCategory(slug: string): Promise<Category | null> {
     const url = BASE_URL + `/categories/${slug}`;
@@ -63,8 +83,11 @@ export class QuestionsApi {
   }
 
   async deleteCategory(slug: string): Promise<boolean> {
-    const response = await fetch(`${BASE_URL}/categories/${slug}`, { method: 'DELETE' });
-    return response.ok;
+    const response = await this.fetchFromApi<boolean>(`${BASE_URL}/categories/${slug}`, {
+      method: 'DELETE',
+    });
+  
+    return response === null; 
   }
 
   async getQuestionsByCategory(slug: string): Promise<Paginated<Question> | null> {

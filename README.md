@@ -23,7 +23,6 @@ ESLint með engar villur
 ## Aukatriði
 
 Sett upp var með v3-synilausn API frá Óla
-Þannig API vesen == Óli's fault :)
 Það er ekki hægt að deleta flokkar með spurningar, en hægt er að edita þá.
 
 Ég setti hýsingu fyrir v3-synilausn frá Óla, með neondb frá mér

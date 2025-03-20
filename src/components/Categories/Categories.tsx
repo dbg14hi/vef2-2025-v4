@@ -16,15 +16,26 @@ export default function Categories({ title }: Props) {
   const [categories, setCategories] = useState<Paginated<Category> | null>(null);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [currentPage]);
 
   async function fetchCategories() {
     setUiState('loading');
     const api = new QuestionsApi();
-    const categoriesResponse = await api.getCategories();
+    
+    let categoriesResponse;
+    if (currentPage === 1) {
+      // For page 1, use the default endpoint without parameters
+      categoriesResponse = await api.getCategories();
+    } else {
+      // For subsequent pages, calculate offset
+      const offset = (currentPage - 1) * itemsPerPage;
+      categoriesResponse = await api.getCategories(itemsPerPage, offset);
+    }
 
     if (!categoriesResponse) {
       setUiState('error');
@@ -39,6 +50,8 @@ export default function Categories({ title }: Props) {
     const success = await api.deleteCategory(slug);
     if (success) fetchCategories();
   }
+
+  const totalPages = categories?.total ? Math.ceil(categories.total / itemsPerPage) : 1;
 
   return (
     <div className={styles.categoriesContainer}>
@@ -66,6 +79,29 @@ export default function Categories({ title }: Props) {
               </li>
             ))}
           </ul>
+
+          {/* Pagination Controls - Only show if total > itemsPerPage */}
+          {categories.total > itemsPerPage && (
+            <div className={styles.pagination}>
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className={styles.paginationButton}
+              >
+                Fyrri
+              </button>
+              <span className={styles.pageInfo}>
+                Síða {currentPage} af {totalPages}
+              </span>
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages || categories.data.length < itemsPerPage}
+                className={styles.paginationButton}
+              >
+                Næsta
+              </button>
+            </div>
+          )}
 
           {!editingCategory && (
             <button onClick={() => setShowForm(true)} className={styles.newCategoryButton}>
